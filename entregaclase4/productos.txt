@@ -1,0 +1,8 @@
+[
+  {
+    "title": "tijera",
+    "price": "$ 200",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_782391-MLA48591212214_122021-V.jpg",
+    "id": 1
+  }
+]

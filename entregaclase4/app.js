@@ -3,17 +3,28 @@ const fs = require('fs');
 const pathFile = './productos.txt';
 
 class Producto {
-	constructor(title, price) {
+	constructor(title, price, thumbnail) {
 		this.title = title;
-		this.price = price;
+		this.price = '$ ' + Number(price);
+		this.thumbnail = thumbnail;
 	}
 }
 
-//let productos = [];
-
-let producto1 = new Producto('tijera', 200);
-let producto2 = new Producto('Escuadra', 300);
-let producto3 = new Producto('Compas', 50);
+let producto1 = new Producto(
+	'tijera',
+	200,
+	'https://http2.mlstatic.com/D_NQ_NP_782391-MLA48591212214_122021-V.jpg'
+);
+let producto2 = new Producto(
+	'Escuadra',
+	300,
+	'https://upload.wikimedia.org/wikipedia/commons/3/3c/Squadra_45.jpg'
+);
+let producto3 = new Producto(
+	'Compas',
+	50,
+	'https://plantec.com.ar/wp-content/uploads/19111-Compas-Profesional-Metalico-Bronce-Plantec-min-1.jpg'
+);
 
 class Contenedor {
 	save = async (prod) => {
@@ -77,7 +88,7 @@ class Contenedor {
 
 const contenedor = new Contenedor();
 
-//contenedor.save(producto2).then((result) => console.log(result));
+contenedor.save(producto1).then((result) => console.log(result));
 
 //contenedor.getById(1).then((result) => console.log(result));
 
@@ -85,4 +96,4 @@ const contenedor = new Contenedor();
 
 //contenedor.deleteById(3).then((result) => console.log(result));
 
-contenedor.deleteAll().then((result) => console.log(result));
+//contenedor.deleteAll().then((result) => console.log(result));
