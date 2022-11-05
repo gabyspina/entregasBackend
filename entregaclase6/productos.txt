@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Tijera",
+    "price": "$ 200",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_782391-MLA48591212214_122021-V.jpg",
+    "id": 1
+  },
+  {
+    "title": "Escuadra",
+    "price": "$ 300",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Squadra_45.jpg",
+    "id": 2
+  },
+  {
+    "title": "Compas",
+    "price": "$ 50",
+    "thumbnail": "https://plantec.com.ar/wp-content/uploads/19111-Compas-Profesional-Metalico-Bronce-Plantec-min-1.jpg",
+    "id": 3
+  }
+]

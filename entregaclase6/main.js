@@ -1,6 +1,22 @@
+const { log } = require('console');
+const express = require('express');
+
 const fs = require('fs');
 
+//Servidor
+
+const app = express();
+const server = app.listen(8080, () => {
+	console.log('servidor escuchando en 8080');
+});
+
+server.on('error', (error) => console.log('Hubo un error'));
+
+// Ruta
+
 const pathFile = './productos.txt';
+
+// Clases
 
 class Producto {
 	constructor(title, price, thumbnail) {
@@ -10,8 +26,9 @@ class Producto {
 	}
 }
 
+//Productos
 let producto1 = new Producto(
-	'tijera',
+	'Tijera',
 	200,
 	'https://http2.mlstatic.com/D_NQ_NP_782391-MLA48591212214_122021-V.jpg'
 );
@@ -25,6 +42,8 @@ let producto3 = new Producto(
 	50,
 	'https://plantec.com.ar/wp-content/uploads/19111-Compas-Profesional-Metalico-Bronce-Plantec-min-1.jpg'
 );
+
+// Clase
 
 class Contenedor {
 	save = async (prod) => {
@@ -51,49 +70,32 @@ class Contenedor {
 		}
 	};
 
-	getById = async (id) => {
-		if (fs.existsSync(pathFile)) {
-			let data = await fs.promises.readFile(pathFile, 'utf-8');
-			let products = JSON.parse(data);
-			let product = products.find((product) => product.id === id);
-			if (product) return { status: 'Se encontro producto', message: product };
-			return { status: 'error', message: 'Producto no entontrado' };
-		} else {
-			return { status: 'error', message: err.message };
-		}
-	};
-
 	getAll = async () => {
 		let data = await fs.promises.readFile(pathFile, 'utf-8');
 		let products = JSON.parse(data);
-		return {
-			status: 'Productos encontrados',
-			message: products,
-		};
+		let nombres = products.map((nombres) => nombres.title);
+		return `<h1 style= 'color:red'> Los productos son ${nombres} </h1>`;
 	};
 
-	deleteById = async (id) => {
+	getRandom = async () => {
 		let data = await fs.promises.readFile(pathFile, 'utf-8');
 		let products = JSON.parse(data);
-		let newProduct = products.filter((prod) => prod.id !== id);
-		await fs.promises.writeFile(pathFile, JSON.stringify(newProduct, null, 2));
-		return { status: 'Exitoso', message: 'Producto eliminado' };
-	};
+		let nombres = products.map((nombres) => nombres.title);
 
-	deleteAll = async () => {
-		await fs.promises.unlink(pathFile);
-		return { status: 'Exitoso', message: 'Productos eliminados' };
+		return `<h1 style= 'color: blue'>El objeto al azar es: ${
+			nombres[Math.floor(Math.random() * nombres.length)]
+		}</h1>`;
 	};
 }
 
 const contenedor = new Contenedor();
 
-contenedor.save(producto1	).then((result) => console.log(result));
+//contenedor.save(producto3).then((result) => console.log(result));
 
-//contenedor.getById(1).then((result) => console.log(result));
+app.get('/productos', (req, res) => {
+	contenedor.getAll().then((result) => res.send(result));
+});
 
-//contenedor.getAll().then((result) => console.log(result));
-
-//contenedor.deleteById(3).then((result) => console.log(result));
-
-//contenedor.deleteAll().then((result) => console.log(result));
+app.get('/productoRandom', (req, res) => {
+	contenedor.getRandom().then((result) => res.send(result));
+});
