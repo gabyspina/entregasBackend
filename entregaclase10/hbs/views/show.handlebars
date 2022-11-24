@@ -1,0 +1,31 @@
+<h1>Listado de productos creados</h1>
+
+{{#if productos}}
+	<table class='table table-bordered border-dark'>
+		<thead>
+			<tr>
+				<th scope='col'>#</th>
+				<th scope='col'>Nombre del producto</th>
+				<th scope='col'>Precio</th>
+				<th scope='col'>Imagen</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each productos}}
+				<tr>
+					<th scope='row'>1</th>
+					<td class='table-info border border-1 border-dark'>{{this.title}}</td>
+					<td class='table-info border border-1 border-dark'>{{this.price}}</td>
+					<td class='table-info border border-1 border-dark'><img
+							src={{this.thumbnail}}
+							width='50'
+						/></td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+{{else}}
+	<h2>Listado vacio</h2>
+{{/if}}
+
+<a href='/' class='btn btn-success'>Crear producto</a>

@@ -1,0 +1,9 @@
+<% if (productos.length>0){ %> <% productos.forEach(item => {%>
+<div><%= item.title %></div>
+<div><%= item.price %></div>
+<img src="<%= item.thumbnail %>" width="50" />
+<% }); %> <% } else {%>
+<p>Listado vacio</p>
+<% } %>
+
+<button><a href="/"   >Crear productos</button>

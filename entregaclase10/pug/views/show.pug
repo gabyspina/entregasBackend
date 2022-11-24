@@ -1,0 +1,15 @@
+doctype html
+html
+	include includes/head.pug
+	body 
+		h1 Listado de productos creados
+			if productos.length
+				each item in productos	
+					td= item.title 
+					td= item.price
+					td= item.thumbnail
+			else
+		h2 Listado vacio	
+			
+a.btn.btn-success(href='/') Crear producto
+include includes/footer.pug

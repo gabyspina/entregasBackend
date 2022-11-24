@@ -1,0 +1,10 @@
+include includes/head.pug
+
+p Crea un producto
+	form(action='/productos' method='post')
+	input(name='title' placeholder='Nombre del Producto')
+	input(name='price' placeholder='Precio')
+	input(name='thumbnail' placeholder='thumbnail')
+	input(type='submit')
+a.btn.btn-success(href='/productos') Ver productos
+include includes/footer.pug
